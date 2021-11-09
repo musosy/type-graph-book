@@ -13,7 +13,10 @@ class BookResolver {
         return await BookService.readOne(id)
     }
     @Mutation(returns => String)
-    async newBook(@Arg("title") title: string, @Arg("author") author: string, @Arg("summary") summary: string) {
+    async newBook(
+        @Arg("title")   title:   string,
+        @Arg("author")  author:  string,
+        @Arg("summary") summary: string) {
         try {
             await BookService.create(title, author, summary);
             return 'success';
@@ -21,6 +24,27 @@ class BookResolver {
             return "fail";
         }
     }
+    @Mutation(returns => String)
+    async deleteBook(@Arg("id") id: string) {
+        try {
+            await BookService.delete(id)
+            return 'success'
+        } catch(err) {
+            return 'fail'
+        }
+    }
+    @Mutation(returns => Book)
+    async updateBook(
+        @Arg("id")      id:      string,
+        @Arg("title")   title:   string,
+        @Arg("author")  author:  string,
+        @Arg("summary") summary: string) {
+            try {
+                return await BookService.update(id, title, author, summary)
+            } catch(err) {
+                console.log("error")
+            }
+        }
 }
 
 export default BookResolver;

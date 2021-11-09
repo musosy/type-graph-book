@@ -7,16 +7,15 @@ import BookResolver from './resolvers/Book.resolver';
 import AuthorResolver from './resolvers/Author.resolver';
 
 dotenv.config();
-const USER     = process.env.USR;
-const PASSWORD = process.env.PWD;
-const DB_NAME  = process.env.DB_NAME; 
-
+const connection: string = process.env.CONNECTION || "";
 (async _ => {
     try {
         await mongoose.connect(
-            `mongodb+srv://${USER}:${PASSWORD}@${DB_NAME}.l3n4l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
+            connection, 
+            {
                 autoIndex: true
-        });
+            }
+        );
         console.log("Connected to database");
     } catch(err) {
         console.log(err)

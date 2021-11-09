@@ -17,8 +17,10 @@ type Book {
 }
 
 type Mutation {
+  deleteBook(id: String!): String!
   newAuthor(firstname: String!, lastname: String!): String!
   newBook(author: String!, summary: String!, title: String!): String!
+  updateBook(author: String!, id: String!, summary: String!, title: String!): Book!
 }
 
 type Query {
