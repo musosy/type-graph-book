@@ -14,7 +14,7 @@ class Book {
     summary?: string;
 
     @Field(type => Author)
-    author!: Author
+    author?: Author
 }
 
 export default Book;

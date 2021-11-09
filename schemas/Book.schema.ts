@@ -10,7 +10,7 @@ export default mongoose.model('book', new mongoose.Schema({
         author: {
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'author',
-            required: true
+            required: false
         }
     })
 )
